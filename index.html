@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head> 
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff8c00">
+
+<meta charset="UTF-8">
+<title>Programa+</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Comic Sans MS", Arial, sans-serif;
+  min-height: 100vh;
+
+  background-image: url("programa+.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 22px;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+  margin-bottom: 25px;
+}
+
+button {
+  padding: 18px 40px;
+  font-size: 22px;
+  border-radius: 30px;
+  border: none;
+  background: orange;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #cc8400;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  background: #ff9800;
+  transform: scale(1.05);
+}
+
+#mensagem {
+  margin-top: 25px;
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Programa+</h1>
+<p>Aprenda programação brincando!</p>
+
+<button onclick="iniciarApp()">
+Clique para Programar
+</button>
+
+<p id="mensagem"></p>
+
+<script>
+function iniciarApp() {
+  const texto = "Olá! Eu sou o Lucas, o robô amigo. Vamos começar a programar!";
+  document.getElementById("mensagem").innerText = "🤖 " + texto;
+  falar(texto);
+
+  // Depois da fala, vai para a atividade
+  setTimeout(() => {
+    window.location.href = "sequencia-repeticao.html";
+  }, 3000);
+}
+
+function falar(texto) {
+  const voz = new SpeechSynthesisUtterance(texto);
+  voz.lang = "pt-BR";
+  voz.rate = 0.9;
+  voz.pitch = 1.2;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(voz);
+}
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+
+</body>
+</html>
