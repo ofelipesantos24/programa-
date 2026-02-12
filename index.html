@@ -1,108 +1,86 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head> 
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#ff8c00">
-
+<html lang="pt-br">
+<head>
 <meta charset="UTF-8">
-<title>Programa+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa+ Login</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Comic Sans MS", Arial, sans-serif;
-  min-height: 100vh;
-
-  background-image: url("programa+.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#6a11cb,#2575fc);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
 }
 
-h1 {
-  font-size: 48px;
-  color: white;
-  text-shadow: 2px 2px 8px black;
-  margin-bottom: 10px;
+.container{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    width:300px;
+    text-align:center;
 }
 
-p {
-  font-size: 22px;
-  color: white;
-  text-shadow: 2px 2px 8px black;
-  margin-bottom: 25px;
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
 }
 
-button {
-  padding: 18px 40px;
-  font-size: 22px;
-  border-radius: 30px;
-  border: none;
-  background: orange;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 6px 0 #cc8400;
-  transition: transform 0.2s;
+button{
+    width:100%;
+    padding:10px;
+    background:#2575fc;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
 
-button:hover {
-  background: #ff9800;
-  transform: scale(1.05);
+button:hover{
+    background:#1b5fd1;
 }
 
-#mensagem {
-  margin-top: 25px;
-  font-size: 20px;
-  color: white;
-  text-shadow: 2px 2px 8px black;
+#mensagem{
+    margin-top:10px;
+    font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Programa+</h1>
-<p>Aprenda programação brincando!</p>
+<div class="container">
+    <h2>Programa+</h2>
+    <p>Faça login para começar</p>
 
-<button onclick="iniciarApp()">
-Clique para Programar
-</button>
+    <input type="text" id="usuario" placeholder="Usuário">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
 
-<p id="mensagem"></p>
+    <div id="mensagem"></div>
+</div>
 
 <script>
-function iniciarApp() {
-  const texto = "Olá! Eu sou o Lucas, o robô amigo. Vamos começar a programar!";
-  document.getElementById("mensagem").innerText = "🤖 " + texto;
-  falar(texto);
+function login(){
+    var user = document.getElementById("usuario").value;
+    var pass = document.getElementById("senha").value;
 
-  // Depois da fala, vai para a atividade
-  setTimeout(() => {
-    window.location.href = "sequencia-repeticao.html";
-  }, 3000);
-}
-
-function falar(texto) {
-  const voz = new SpeechSynthesisUtterance(texto);
-  voz.lang = "pt-BR";
-  voz.rate = 0.9;
-  voz.pitch = 1.2;
-  speechSynthesis.cancel();
-  speechSynthesis.speak(voz);
+    if(user === "felipe" && pass === "1234"){
+        document.getElementById("mensagem").innerHTML = "Login realizado com sucesso!";
+        document.getElementById("mensagem").style.color = "green";
+    } else {
+        document.getElementById("mensagem").innerHTML = "Usuário ou senha incorretos!";
+        document.getElementById("mensagem").style.color = "red";
+    }
 }
 </script>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
-
 
 </body>
 </html>
